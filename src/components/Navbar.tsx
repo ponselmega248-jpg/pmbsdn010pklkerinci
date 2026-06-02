@@ -31,7 +31,7 @@ export default function Navbar() {
               </div>
             )}
             <span className="font-bold text-xl tracking-tight text-slate-900">
-              {settings?.namaSekolah || 'SDN 010 PKL KERINCI'}
+              {settings?.namaSekolah || 'SDN 008 PKL KERINCI'}
             </span>
           </Link>
 

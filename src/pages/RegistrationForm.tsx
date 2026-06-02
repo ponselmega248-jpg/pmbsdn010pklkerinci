@@ -92,7 +92,7 @@ export default function RegistrationForm() {
     
     doc.setFont("helvetica", "normal");
     doc.setFontSize(13);
-    doc.text(settings?.namaSekolah || "SDN 010 PKL KERINCI", 105, 36, { align: "center" });
+    doc.text(settings?.namaSekolah || "SDN 008 PKL KERINCI", 105, 36, { align: "center" });
     
     doc.setFontSize(10);
     doc.setTextColor(219, 234, 254);
