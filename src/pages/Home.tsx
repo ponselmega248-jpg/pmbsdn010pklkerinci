@@ -148,7 +148,7 @@ export default function Home() {
       </section>
 
       {/* Sambutan & Visi Misi */}
-      <section className="py-24 bg-white">
+      {/*<section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -211,7 +211,7 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section>*/}
 
       {/* Alur PPDB */}
       <section id="alur" className="py-24 bg-slate-900 text-white relative overflow-hidden">
