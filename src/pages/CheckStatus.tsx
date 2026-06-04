@@ -51,8 +51,8 @@ export default function CheckStatus() {
     // Header (Kop Surat)
     if (settings?.kopSurat) {
       try {
-        doc.addImage(settings.kopSurat, 'JPEG', 20, 10, 170, 35);
-        currentY = 50;
+        doc.addImage(settings.kopSurat, 'JPEG', 20, 10, 170, 30);
+        currentY = 40;
         doc.line(20, currentY, 190, currentY);
         currentY += 10;
         
