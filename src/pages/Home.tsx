@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Users, Trophy, ChevronRight, CheckCircle2, Calendar, FileText, CheckSquare, AlertCircle } from 'lucide-react';
+import { BookOpen, ChevronRight, Calendar, FileText, CheckSquare, AlertCircle, CalendarDays, SearchCheck, Megaphone } from 'lucide-react';
 import { useSettings } from '../context/SettingsContext';
 
 export default function Home() {
@@ -69,7 +69,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed"
             >
-              Bergabunglah bersama {settings?.namaSekolah || 'SDN 010 PKL KERINCI'}. Kami berkomitmen memberikan pendidikan dasar terbaik dengan fasilitas modern dan tenaga pendidik profesional.
+              Bergabunglah bersama {settings?.namaSekolah || 'SDN 008 PKL KERINCI'}. Kami berkomitmen memberikan pendidikan dasar terbaik dengan fasilitas modern dan tenaga pendidik profesional.
             </motion.p>
             
             <motion.div
@@ -104,9 +104,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Profil Sekolah / Features */}
-      <section className="py-24 bg-slate-50 relative -mt-16 z-20">
+      {/* Informasi Waktu Pendaftaran SPMB */}
+      <section className="py-24 bg-slate-50 relative -mt-16 z-20 border-t border-slate-200/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Jadwal Pendaftaran SPMB 2026
+            </h2>
+            <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              Catat tanggal penting berikut dan persiapkan diri Anda untuk bergabung dengan {settings?.namaSekolah || 'SDN 008 Pkl Kerinci'}.
+            </p>
+          </div>
+
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -116,39 +126,70 @@ export default function Home() {
           >
             {[
               {
-                icon: <BookOpen className="text-blue-500" size={32} />,
-                title: "Kurikulum Modern",
-                desc: "Menerapkan kurikulum merdeka belajar yang adaptif dengan perkembangan zaman dan teknologi."
+                icon: <CalendarDays className="text-blue-500" size={32} />, 
+                title: "Pendaftaran Online",
+                prompt: "Periode Pendaftaran:", 
+                dateRange: "15 - 18 Juni",
+                year: "2026",
+                color: "text-blue-600", 
+                desc: "Pengisian formulir secara online dan unggah berkas pendaftaran calon peserta didik."
               },
               {
-                icon: <Users className="text-green-500" size={32} />,
-                title: "Guru Profesional",
-                desc: "Dididik oleh tenaga pengajar tersertifikasi, berpengalaman, dan berdedikasi tinggi pada pendidikan."
+                icon: <SearchCheck className="text-green-500" size={32} />, 
+                title: "Verifikasi & Validasi", 
+                prompt: "Periode Verifikasi:",
+                dateRange: "15 - 18 Juni",
+                year: "2026",
+                color: "text-green-600",
+                desc: "Pemeriksaan dan validasi keabsahan dokumen pendaftar oleh tim panitia sekolah."
               },
               {
-                icon: <Trophy className="text-amber-500" size={32} />,
-                title: "Fasilitas Lengkap",
-                desc: "Ruang kelas nyaman, perpustakaan digital, lab komputer, dan fasilitas olahraga yang memadai."
+                icon: <Megaphone className="text-amber-500" size={32} />, 
+                title: "Pengumuman & Daftar Ulang",
+                prompt: "Pengumuman Hasil:",
+                dateRange: "19 Juni",
+                year: "2026",
+                color: "text-amber-600",
+                desc: "Pengumuman hasil seleksi pada tanggal 19 Juni. Dilanjutkan daftar ulang pada 19 - 20 Juni 2026." 
               }
-            ].map((feature, idx) => (
+            ].map((schedule, idx) => (
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow"
+                className="bg-white rounded-2xl p-8 shadow-sm border border-slate-200/60 hover:shadow-md hover:border-blue-100 transition-all duration-300 flex flex-col h-full group"
               >
-                <div className="w-14 h-14 rounded-xl bg-slate-50 flex items-center justify-center mb-6 border border-slate-100">
-                  {feature.icon}
+                <div className="flex justify-between items-start mb-8">
+                  <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center border border-slate-100 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                    {schedule.icon}
+                  </div>
+                  <span className="text-xs font-bold text-slate-500 bg-slate-100 rounded-full px-3 py-1 border border-slate-200">
+                    Tahap {idx + 1}
+                  </span>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{feature.desc}</p>
+
+                <div className="flex-grow space-y-2 mb-6">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                    {schedule.prompt}
+                  </p>
+                  <div className={`text-3xl lg:text-4xl font-black ${schedule.color} tracking-tight`}>
+                    {schedule.dateRange}
+                  </div>
+                  <div className="text-xl font-semibold text-slate-400 pt-1">{schedule.year}</div>
+                </div>
+
+                <div className="border-t border-slate-100 pt-6 mt-auto">
+                  <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
+                    {schedule.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {schedule.desc}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
-
-      {/* Sambutan & Visi Misi */}
-
 
       {/* Alur PPDB */}
       <section id="alur" className="py-24 bg-slate-900 text-white relative overflow-hidden">
@@ -158,7 +199,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Alur Pendaftaran SPMB</h2>
             <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-              Ikuti langkah-langkah mudah berikut untuk mendaftarkan putra/putri Anda di SDN Harapan Bangsa.
+              Ikuti langkah-langkah mudah berikut untuk mendaftarkan putra/putri Anda.
             </p>
           </div>
 
